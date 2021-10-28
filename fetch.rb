@@ -1,11 +1,16 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require 'sqlite3'
-require 'nokogiri'
+#
+# fetch.rb: Fetch LLVM Weekly RSS feed, get fetch item links, and
+# write full RSS feed of result.
+#
+
 require 'uri'
 require 'time'
 require 'rss'
+require 'sqlite3'
+require 'nokogiri'
 
 #
 # SQLite3-backed URL cache
@@ -215,28 +220,3 @@ feed = Feed.new(cache)
 
 # write feed file if feed has changed
 FeedWriter.write(dst_path, cache, feed) if feed.changed?
-
-# feed.items.take(20).each do |item|
-#   headers = if row = cache.get_post_headers(item.link)
-#     { 'if-none-match' => row['etag'], 'if-modified-since' => row['last_modified'] }
-#   else
-#     {}
-#   end
-# 
-#   body = Nokogiri::HTML(URI.parse(item.link).open(headers).open do |fh|
-#     
-#     html = Nokogiri::HTML(URI.parse(item.link).open({ 'if-non-match' => "W/\"6151d598-2ca5\"", 'if-modified-sinc
-#     Body.new(item.link, fh.metas['etag'], fh.metas['last-modified'], fh.puts %w{etag last-modified}
-# .each.with_object({}) { |k, r| r[k] = fh.metas[k].first }; fh.read }) / 'div.pos
-# 
-#   
-# 
-# data = URI.parse('https://llvmweekly.org/rss.xml').open.read
-# doc = Nokogiri::XML(data)
-# 
-# (doc / 'item').map { |item| { name: (item / 'title').text, link: (item / 'link').text, date: Time.parse((item / 'pubDate').text) } }
-# 
-# post = (Nokogiri::HTML(URI.parse('https://llvmweekly.org/issue/11').open({ 'if-non-match' => "W/\"6151d598-2ca5\"", 'if-modified-sinc
-# e' => "Mon, 27 Sep 2021 14:30:48 GMT" }).open { |fh| puts %w{etag last-modified}
-# .each.with_object({}) { |k, r| r[k] = fh.metas[k].first }; fh.read }) / 'div.pos
-# t').inner_html.trim
