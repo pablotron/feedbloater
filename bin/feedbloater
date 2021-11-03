@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# load library
+require_relative '../lib/feedbloater'
+
+# run command
+FeedBloater.run($0, ARGV)
