@@ -1,2 +1,4 @@
 *.sw?
 vendor
+*.xml
+*.db
