@@ -1,8 +1,17 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+#
+# feedbloater - Expand truncated items from RSS feed into complete
+# contents by fetching item URLs and matching a subset of the
+# destination URL with a CSS selector.
+#
+# Example:
+#   feedbloater https://llvmweekly.org/rss.xml div.post foo.xml
+#
+
 # load library
 require_relative '../lib/feedbloater'
 
 # run command
-FeedBloater.run($0, ARGV)
+FeedBloater::CLI.run($0, ARGV, ENV)
