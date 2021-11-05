@@ -18,14 +18,14 @@ You can run Feed Bloater from a [cron job][cron] like so:
 
 ## Installation
 
-Run `bundle install` to install dependencies:
+Run `bundle` to install dependencies:
 
     # install dependencies
     $ bundle
 
 ## Usage
 
-Execute `bundle exec bin/feedbloater` with the following parameters:
+Execute `bin/feedbloater` with the following parameters:
 
 1. [RSS][] feed [URL][].
 2. [CSS selector][css-selector].
@@ -67,6 +67,8 @@ available environment variables.
 |`FEEDBLOATER_WRITE_MODE`|Destination file write mode.  One of `always` or `changed`.|`changed`|
 |`FEEDBLOATER_FEED_TITLE`|Destination file feed title override.|`n/a` (title copied from source feed)|
 |`FEEDBLOATER_FEED_LINK`|Destination file feed link override.|`n/a` (link copied from source feed)|
+|`FEEDBLOATER_LOG_PATH`|Path to log file, or `STDERR` to log to standard error.|`STDERR`|
+|`FEEDBLOATER_LOG_LEVEL`|Log level.|`info`|
 
 [rss]: https://en.wikipedia.org/wiki/RSS
   "Really Simple Syndication"
