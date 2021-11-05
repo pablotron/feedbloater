@@ -13,15 +13,33 @@ You can run Feed Bloater from a [cron job][cron] like so:
 
 ```
 # fetch llvmweekly RSS feed hourly
-@hourly bundle exec path/to/bin/feedbloater https://llvmweekly.org/rss.xml div.post path/to/llvmweekly.xml
+@hourly $HOME/bin/feedbloater.sh
+```
+
+Then in `~/bin/feedbloater.sh`:
+
+```
+#!/bin/bash
+cd path/to/feedbloater
+bundle exec bin/feedbloater https://llvmweekly.org/rss.xml div.post path/to/llvmweekly.xml
+# put other commands here
 ```
 
 ## Installation
 
-Run `bundle` to install dependencies:
+You'll need to install [Bundler][].  On [Debian][]:
 
-    # install dependencies
-    $ bundle
+```
+# install bundler in debian
+$ sudo apt install bundler sqlite3 libsqlite3-0 libsqlite3-dev
+```
+
+Then run `bundle` to install dependencies:
+
+```
+# install dependencies
+$ bundle --path vendor/bundle
+```
 
 ## Usage
 
@@ -82,3 +100,7 @@ available environment variables.
   "Periodic task scheduler."
 [sqlite]: https://sqlite.org/
   "SQLite database."
+[bundler]: https://bundler.io
+  "Ruby dependency manager."
+[debian]: https://debian.org/
+  "Debian Linux distribution."
